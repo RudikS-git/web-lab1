@@ -1,0 +1,34 @@
+﻿@page
+@model testweb.Pages.EditTypeModel
+@{
+    ViewData["Title"] = "EditType";
+}
+
+
+<h2 class="text-center">Редактирование информации о типе</h2>
+
+<form class="text-center" method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Type.Id" type="hidden" />
+
+    <div>
+        <label>Категории</label>
+        <select asp-for="Type.Categories">
+            <option value="0">Продовольственные</option>
+            <option value="1">Непродовольственные</option>      
+        </select>
+    </div>
+
+    <div>
+        <label>Название</label>
+
+        <div>
+            <input asp-for="Type.Name" />
+            <span asp-validation-for="Type.Name"></span>
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Применить" />
+    </div>
+</form>

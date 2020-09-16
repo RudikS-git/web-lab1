@@ -1,0 +1,71 @@
+﻿@page
+@model testweb.Pages.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="text-center">Редактирование информации о продукте</h2>
+
+<form class="text-center" method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Product.Id" type="hidden" />
+
+    <div>
+        <label>Тип продукта</label>
+        <select asp-for="Product.TypeId">
+            @foreach (var item in Model.foods)
+            {
+                if (Model.Product.TypeId == item.Id)
+                {
+                    <option value="@item.Id" selected>@item.Name</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Название компании</label>
+
+        <div>
+            <input asp-for="Product.NameCompany" />
+            <span asp-validation-for="Product.NameCompany"></span>
+        </div>
+    </div>
+
+    <div>
+        <label>Название продукта</label>
+
+        <div>
+            <input asp-for="Product.Name" />
+            <span asp-validation-for="Product.Name"></span>
+        </div>
+    </div>
+
+    <div>
+        <label>Количество</label>
+
+        <div>
+            <input asp-for="Product.Amount" type="number"/>
+            <span asp-validation-for="Product.Amount"></span>
+        </div>
+    </div>
+
+    <div>
+        <label>Цена за штуку</label>
+
+        <div>
+            <input asp-for="Product.Price" type="number" />
+            <span asp-validation-for="Product.Price"></span>
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Применить"/>
+    </div>
+</form>
+
+

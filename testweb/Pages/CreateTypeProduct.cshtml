@@ -1,0 +1,24 @@
+﻿@page
+@model testweb.Pages.CreateTypeProductModel
+@{
+}
+
+<h2>@ViewData["Title"]</h2>
+<div asp-validation-summary="All"></div>
+<form class="text-center" method="POST">
+    <div>
+        <label>Категория:</label>
+        <select asp-for="Type.Categories">
+            <option value="0">Продовольственные</option>
+            <option value="1">Непродовольственные</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Название</label>
+        <input asp-for="Type.Name" required />
+    </div>
+    <div>
+        <button type="submit">Добавить</button>
+    </div>
+</form>

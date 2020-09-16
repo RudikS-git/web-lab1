@@ -1,0 +1,145 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+    <div class="text-center">
+
+        @{
+            int sumFoods = 0;
+            int sumNonFoods = 0;
+            @foreach (var item in Model.foods)
+            {
+                if (item.Categories == Models.Type.CategoriesProduct.Food)
+                {
+                    sumFoods += item.products.Count();
+                }
+                else
+                {
+                    sumNonFoods += item.products.Count();
+                }
+            }
+
+            sumFoods += Model.foods.Where(it => it.Categories == Models.Type.CategoriesProduct.Food).Count() + 1;
+            sumNonFoods += Model.foods.Where(it => it.Categories == Models.Type.CategoriesProduct.NonFood).Count() + 1;
+
+        }
+
+
+        <table>
+            <thead>
+            <th>Категории</th>
+            <th colspan="6">Товары</th>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>Название компании</td>
+                    <td>Название продукта</td>
+                    <td>Количество</td>
+                    <td>Цена</td>
+                </tr>
+
+                <tr>
+                    <td rowspan=@sumFoods>Продовольственные</td>
+                </tr>
+
+                @foreach (var item in Model.foods)
+                {
+                    if (item.Categories != Models.Type.CategoriesProduct.Food)
+                    {
+                        continue;
+                    }
+
+                    <tr>
+                        <td colspan="4">@item.Name</td>
+                        <td>
+                            <a class="btn btn-danger" asp-page="EditType" asp-route-id="@item.Id" class="buttonTable">Изменить</a>
+                        </td>
+                        <td>
+                            <form method="post">
+                                <button class="btn btn-danger buttonTable" type="submit" asp-page-handler="deletetype" asp-route-id="@item.Id">Удалить</button>
+                            </form>
+                        </td>
+                        @foreach (var product in item.products)
+                        {
+                        <tr>
+                            @if (item.Id == product.TypeId)
+                            {
+                                <td>@product.NameCompany</td>
+                                <td>@product.Name</td>
+                                <td>@product.Amount</td>
+                                <td>@product.Price</td>
+                                <td>
+                                    <a asp-page="Edit" asp-route-id="@product.Id" class="buttonTable">Изменить</a>
+                                </td>
+                                <td>
+                                    <form method="post">
+                                        <button class="buttonTable" type="submit" asp-page-handler="delete" asp-route-id="@product.Id">Удалить</button>
+                                    </form>
+                                </td>
+                            }
+
+                        </tr>
+
+
+                    }
+                        </tr>
+                    }
+
+                <tr>
+                    <td rowspan=@sumNonFoods>Непродовольственные</td>
+                </tr>
+
+                @foreach (var item in Model.foods)
+                {
+                    if (item.Categories != Models.Type.CategoriesProduct.NonFood)
+                    {
+                        continue;
+                    }
+                    <tr>
+                        <td colspan="4">@item.Name</td>
+                        <td>
+                            <a class="btn btn-danger" asp-page="EditType" asp-route-id="@item.Id" class="buttonTable">Изменить</a>
+                        </td>
+                        <td>
+                            <form method="post">
+                                <button class="btn btn-danger buttonTable" type="submit" asp-page-handler="deletetype" asp-route-id="@item.Id">Удалить</button>
+                            </form>
+                        </td>
+
+                        @foreach (var product in item.products)
+                        {
+                        <tr>
+                            @if (item.Id == product.TypeId)
+                            {
+                                <td>@product.NameCompany</td>
+                                <td>@product.Name</td>
+                                <td>@product.Amount</td>
+                                <td>@product.Price</td>
+                                <td>
+                                    <a asp-page="Edit" asp-route-id="@product.Id" class="buttonTable">Изменить</a>
+                                </td>
+                                <td>
+                                    <form method="post">
+                                        <button class="buttonTable" type="submit" asp-page-handler="delete" asp-route-id="@product.Id">Удалить</button>
+                                    </form>
+                                </td>
+                            }
+
+                        </tr>
+                    }
+                        </tr>
+                    }
+
+
+            </tbody>
+        </table>
+
+        <a asp-page="Create" asp-route-categories="0" class="btn btn-success btn-add">Добавить прод товар</a>
+        <a asp-page="Create" asp-route-categories="1" class="btn btn-success btn-add">Добавить непрод товар</a>
+        <a asp-page="CreateTypeProduct" class="btn btn-success btn-add">Добавить тип</a>
+
+    </div>

@@ -1,0 +1,47 @@
+﻿@page
+@model testweb.Pages.CreateModel
+@{
+    ViewData["Title"] = "Добавление";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div asp-validation-summary="All"></div>
+<form class="text-center" method="POST">
+    <div>
+        <label>Продукт:</label>
+        <select asp-for="Product.TypeId">
+            @foreach (var item in Model.foods)
+            {
+                if (item.Categories == Model.Categories)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Название компании</label>
+        <input asp-for="Product.NameCompany" required/>
+    </div>
+    <div>
+        <label>Название продукта</label>
+        <input asp-for="Product.Name" required/>
+    </div>
+
+    <div>
+        <label>Кол-во</label>
+        <input asp-for="Product.Amount" required/>
+    </div>
+
+    <div>
+        <label>Цена за штуку</label>
+        <input asp-for="Product.Price" min="0" required/>
+    </div>
+
+    <div>
+        <button type="submit">Добавить</button>
+    </div>
+</form>
+
