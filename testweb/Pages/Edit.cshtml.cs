@@ -14,7 +14,7 @@ namespace testweb.Pages
         private readonly ApplicationContext _context;
         [BindProperty]
         public Product Product { get; set; }
-        public List<Models.Type> foods { get; set; }
+        public List<Models.Type> tree { get; set; }
 
         public EditModel(ApplicationContext db)
         {
@@ -23,7 +23,8 @@ namespace testweb.Pages
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            foods = _context.foods.Include(type => type.products).AsNoTracking().ToList();
+            tree = _context.Types.Include(type => type.Products).AsNoTracking().ToList();
+
 
             if (id == null)
             {

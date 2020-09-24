@@ -9,14 +9,10 @@
 <form class="text-center" method="POST">
     <div>
         <label>Продукт:</label>
-        <select asp-for="Product.TypeId">
-            @foreach (var item in Model.foods)
+        <select asp-for=@Model.Product.Head.Id>
+            @foreach (var item in Model.tree)
             {
-                if (item.Categories == Model.Categories)
-                {
-                    <option value="@item.Id">@item.Name</option>
-                }
-
+                <option value="@item.Id">@item.Name</option>
             }
         </select>
     </div>

@@ -14,6 +14,7 @@ namespace testweb.Pages
         private readonly ApplicationContext _context;
         [BindProperty]
         public Models.Type Type { get; set; }
+        public List<Models.Type> Types { get; set; }
 
         public EditTypeModel(ApplicationContext db)
         {
@@ -22,12 +23,13 @@ namespace testweb.Pages
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Types = _context.Types.Include(type => type.Products).AsNoTracking().ToList();
             if (id == null)
             {
                 return NotFound();
             }
 
-            Type = await _context.foods.FindAsync(id);
+            Type = await _context.Types.FindAsync(id);
 
             if (Type == null)
             {

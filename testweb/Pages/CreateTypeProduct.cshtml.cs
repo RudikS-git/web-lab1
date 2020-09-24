@@ -16,23 +16,32 @@ namespace testweb.Pages
 
         [BindProperty]
         public Models.Type Type { get; set; }
-        public List<Models.Type> foods { get; set; }
+        public List<Models.Type> tree { get; set; }
 
         public CreateTypeProductModel(ApplicationContext db)
         {
             _context = db;
         }
 
-        public void OnGet(CategoriesProduct categories)
+        public void OnGet(int categories)
         {
-            foods = _context.foods.Include(type => type.products).AsNoTracking().ToList();
+            tree = _context.Types.Include(type => type.Products).AsNoTracking().ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                _context.foods.Add(Type);
+                if(Type.Parent.Id == -1)
+                {
+                    Type.Parent = null;
+                }
+                else
+                {
+                    Type.Parent = _context.Types.ToList().Find(it => it.Id == Type.Parent.Id);
+                }
+
+                _context.Types.Add(Type);
 
                 await _context.SaveChangesAsync();
                 return RedirectToPage("Index");

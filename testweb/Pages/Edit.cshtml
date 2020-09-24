@@ -12,10 +12,10 @@
 
     <div>
         <label>Тип продукта</label>
-        <select asp-for="Product.TypeId">
-            @foreach (var item in Model.foods)
+        <select asp-for="Product.Id">
+            @foreach (var item in Model.tree)
             {
-                if (Model.Product.TypeId == item.Id)
+                if (Model.Product.Id == item.Id)
                 {
                     <option value="@item.Id" selected>@item.Name</option>
                 }

@@ -13,10 +13,15 @@
 
     <div>
         <label>Категории</label>
-        <select asp-for="Type.Categories">
-            <option value="0">Продовольственные</option>
-            <option value="1">Непродовольственные</option>      
-        </select>
+        <!--<select asp-for="">-->
+            @*@foreach (var item in Model.Types)
+            {
+                item.Branch
+                <option value="">item</option>
+            }*@
+
+           
+        <!--</select>-->
     </div>
 
     <div>

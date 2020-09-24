@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using testweb.Models;
 using static testweb.Models.Type;
@@ -16,25 +17,24 @@ namespace testweb.Pages
         
         [BindProperty]
         public Models.Product Product { get; set; }
-        public List<Models.Type> foods { get; set; }
-        public CategoriesProduct Categories { get; set; }
+        public List<Models.Type> tree { get; set; }
+        
 
         public CreateModel(ApplicationContext db)
         {
             _context = db;
         }
 
-        public void OnGet(CategoriesProduct categories)
+        public void OnGet(int id)
         {
-            foods = _context.foods.Include(type => type.products).AsNoTracking().ToList();
-            Categories = categories;
+            tree = _context.Types.Include(type => type.Products).AsNoTracking().ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if(ModelState.IsValid)
             {
-               // Product.TypeId = (int)Categories;
+                Product.Head = _context.Types.ToList().Find(it => it.Id == Product.Head.Id);
                 _context.products.Add(Product);
                 
                 await _context.SaveChangesAsync();

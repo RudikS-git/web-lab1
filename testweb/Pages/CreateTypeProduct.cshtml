@@ -8,9 +8,12 @@
 <form class="text-center" method="POST">
     <div>
         <label>Категория:</label>
-        <select asp-for="Type.Categories">
-            <option value="0">Продовольственные</option>
-            <option value="1">Непродовольственные</option>
+        <select asp-for="Type.Parent.Id">
+            <option value=@(-1)>Корень</option>
+            @foreach (var item in Model.tree)
+            {
+                <option value=@item.Id>@item.Name</option>
+            }
         </select>
     </div>
 

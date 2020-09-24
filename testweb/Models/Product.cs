@@ -10,7 +10,7 @@ namespace testweb.Models
         public string NameCompany { get; set; }
         public string Name { get; set; }
 
-        public int TypeId { get; set; }
+        public Type Head { get; set; } 
 
     }
 }
