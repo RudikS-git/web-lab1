@@ -14,7 +14,7 @@ namespace testweb.Models
             Products = new List<Product>();
         }*/
 
-        public int Id { get; set; }
+        public Nullable<int> Id { get; set; }
         public string Name{ get; set; }
 
         public Type Parent { get; set; }

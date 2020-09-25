@@ -12,16 +12,21 @@
     <input asp-for="Type.Id" type="hidden" />
 
     <div>
-        <label>Категории</label>
-        <!--<select asp-for="">-->
-            @*@foreach (var item in Model.Types)
+        <label>Родительская категория</label>
+        <select asp-for="Id">
+            <option value=@null>Корень</option>
+            @foreach (var item in Model.Types)
             {
-                item.Branch
-                <option value="">item</option>
-            }*@
+                if(item.Id == Model.Type.Id)
+                {
+                    continue; 
+                }
+
+                <option value=@item.Id>@item.Name</option>
+            }
 
            
-        <!--</select>-->
+        </select>
     </div>
 
     <div>
@@ -34,6 +39,6 @@
     </div>
 
     <div>
-        <input type="submit" value="Применить" />
+        <input type="submit" value="Применить"/>
     </div>
 </form>
