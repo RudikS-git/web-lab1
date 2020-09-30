@@ -7,22 +7,30 @@
 
 <h2 class="text-center">Редактирование информации о типе</h2>
 
-<form class="text-center" method="post">
+<form class="text-center area_form" method="post">
     <div asp-validation-summary="All"></div>
     <input asp-for="Type.Id" type="hidden" />
 
     <div>
         <label>Родительская категория</label>
-        <select asp-for="Id">
+        <select class="property_field" asp-for="Id">
             <option value=@null>Корень</option>
             @foreach (var item in Model.Types)
             {
                 if(item.Id == Model.Type.Id)
                 {
-                    continue; 
+                    continue;
                 }
 
-                <option value=@item.Id>@item.Name</option>
+                if(Model.Type.Parent != null && item.Id == Model.Type.Parent.Id)
+                {
+                    <option value=@item.Id selected>@item.Name</option>
+                }
+                else
+                {
+                    <option value=@item.Id>@item.Name</option>
+                }
+                
             }
 
            
@@ -32,13 +40,13 @@
     <div>
         <label>Название</label>
 
-        <div>
+        <div class="property_field">
             <input asp-for="Type.Name" />
             <span asp-validation-for="Type.Name"></span>
         </div>
     </div>
 
     <div>
-        <input type="submit" value="Применить"/>
+        <input class="btn-add" type="submit" value="Применить"/>
     </div>
 </form>

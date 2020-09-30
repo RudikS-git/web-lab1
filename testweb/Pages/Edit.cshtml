@@ -6,13 +6,13 @@
 
 <h2 class="text-center">Редактирование информации о продукте</h2>
 
-<form class="text-center" method="post">
+<form class="text-center area_form" method="post">
     <div asp-validation-summary="All"></div>
     <input asp-for="Product.Id" type="hidden" />
 
     <div>
         <label>Тип продукта</label>
-        <select asp-for="Product.Id">
+        <select class="property_field" asp-for="Product.Head.Id">
             @foreach (var item in Model.tree)
             {
                 if (Model.Product.Id == item.Id)
@@ -30,7 +30,7 @@
     <div>
         <label>Название компании</label>
 
-        <div>
+        <div class="property_field">
             <input asp-for="Product.NameCompany" />
             <span asp-validation-for="Product.NameCompany"></span>
         </div>
@@ -39,7 +39,7 @@
     <div>
         <label>Название продукта</label>
 
-        <div>
+        <div class="property_field">
             <input asp-for="Product.Name" />
             <span asp-validation-for="Product.Name"></span>
         </div>
@@ -48,7 +48,7 @@
     <div>
         <label>Количество</label>
 
-        <div>
+        <div class="property_field">
             <input asp-for="Product.Amount" type="number"/>
             <span asp-validation-for="Product.Amount"></span>
         </div>
@@ -57,14 +57,14 @@
     <div>
         <label>Цена за штуку</label>
 
-        <div>
+        <div class="property_field">
             <input asp-for="Product.Price" type="number" />
             <span asp-validation-for="Product.Price"></span>
         </div>
     </div>
 
     <div>
-        <input type="submit" value="Применить"/>
+        <input class="btn-add" type="submit" value="Применить"/>
     </div>
 </form>
 

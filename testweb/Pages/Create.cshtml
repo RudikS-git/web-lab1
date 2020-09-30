@@ -5,11 +5,12 @@
 }
 
 <h2>@ViewData["Title"]</h2>
+
 <div asp-validation-summary="All"></div>
-<form class="text-center" method="POST">
+<form class="text-center area_form" method="POST">
     <div>
         <label>Продукт:</label>
-        <select asp-for=@Model.Product.Head.Id>
+        <select class="property_field" asp-for=@Model.Product.Head.Id>
             @foreach (var item in Model.tree)
             {
                 <option value="@item.Id">@item.Name</option>
@@ -19,25 +20,25 @@
 
     <div>
         <label>Название компании</label>
-        <input asp-for="Product.NameCompany" required/>
+        <input class="property_field" asp-for="Product.NameCompany" required/>
     </div>
     <div>
         <label>Название продукта</label>
-        <input asp-for="Product.Name" required/>
+        <input class="property_field" asp-for="Product.Name" required/>
     </div>
 
     <div>
         <label>Кол-во</label>
-        <input asp-for="Product.Amount" required/>
+        <input class="property_field" asp-for="Product.Amount" required/>
     </div>
 
     <div>
         <label>Цена за штуку</label>
-        <input asp-for="Product.Price" min="0" required/>
+        <input class="property_field" asp-for="Product.Price" min="0" required/>
     </div>
 
     <div>
-        <button type="submit">Добавить</button>
+        <button class="btn-add" type="submit">Добавить</button>
     </div>
 </form>
 

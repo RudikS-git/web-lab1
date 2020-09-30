@@ -1,27 +1,26 @@
 ﻿@page
 @model testweb.Pages.CreateTypeProductModel
-@{
-}
+@{ }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class="text-center">Добавление каталога</h2>
+
 <div asp-validation-summary="All"></div>
-<form class="text-center" method="POST">
+<form class="text-center area_form" method="POST">
     <div>
         <label>Категория:</label>
-        <select asp-for="Type.Parent.Id">
+        <select class="property_field" asp-for="Type.Parent.Id">
             <option value=@(-1)>Корень</option>
             @foreach (var item in Model.tree)
             {
-                <option value=@item.Id>@item.Name</option>
-            }
+<option value=@item.Id>@item.Name</option>            }
         </select>
     </div>
 
     <div>
         <label>Название</label>
-        <input asp-for="Type.Name" required />
+        <input class="property_field" asp-for="Type.Name" required />
     </div>
     <div>
-        <button type="submit">Добавить</button>
+        <button class="btn-add" type="submit">Добавить</button>
     </div>
 </form>

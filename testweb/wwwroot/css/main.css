@@ -14,7 +14,8 @@
 }
 
 .table_icon_button {
-    padding: 2px 2px 5px 5px;
+    padding: 2px 2px 5px 0px;
+    display: inline;
 }
 
 .table_icon_button_catalog {
@@ -32,8 +33,11 @@
     position: absolute;
     right: 28px;
     top: 0;
-   /* margin-right: 20px;*/
-    
+    /* margin-right: 20px;*/
+}
+
+.table_icon_catalog_btn {
+    background-color: #2f2e2e;
 }
 
 .table_catalog {
@@ -41,8 +45,24 @@
     min-width: 120px;
 }
 
-.table_catalog_text {
+    .table_catalog:hover {
+        background-color: #2f2e2e;
+        border-color: #262626;
+        border-style: solid;
+        border-width: 1px;
+    }
 
+    .table_catalog:hover .table_catalog_control {
+        display: block;
+    }
+
+
+
+.table_catalog_control {
+    display: none;
+}
+
+.table_catalog_text {
 }
 
 .table_icon_button:focus {
@@ -55,16 +75,24 @@
 
 .btn-add {
     /*margin-top: 350px !important;*/
-    background-color: orangered;
+    background-color: #2c3a62;
     color: white;
     padding: 5px;
-    border-radius: 2px;
+    border: 0;
+    border-radius: 3px;
+
+    float: right;
+    margin: 5px;
 }
 
 .btn-add:hover {
     color: white;
     text-decoration: none;
-    border-color: #ffa0a0;
+    border-color: #343a82;
     border-width: 2px;
-    
+}
+
+.property_field {
+    float: right;
+    border-radius: 3px;
 }

@@ -66,7 +66,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     background-color: #232121;
-    color: white;
+    color: #9d9797;
 }
 .footer {
   position: absolute;
@@ -87,21 +87,24 @@ table {
 th {
     border-collapse: collapse;
     border: 1px solid;
-    border-color: white;
+    border-color: #6c6868;
 }
 
 tr {
     border-collapse: collapse;
     border: 1px solid;
-    border-color: white;
+    border-color: #6c6868;
 }
 
-td{
+td {
     border-collapse: collapse;
     border: 1px solid;
-    border-color: white;
-
+    border-color: #6c6868;
     min-width: calc(50px + 5%);
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .typeRow {
@@ -116,4 +119,13 @@ td{
     background-color: #232121;
     color: white;
     border: 0;
+    padding: 0;
+}
+
+.area_form {
+    width: 500px;
+
+    border-color: #363737;
+    border-width: 1px;
+    border-style: solid;
 }

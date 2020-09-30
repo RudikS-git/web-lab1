@@ -14,6 +14,7 @@ namespace testweb.Pages
         private readonly ApplicationContext _context;
         [BindProperty]
         public Models.Type Type { get; set; }
+
         public List<Models.Type> Types { get; set; }
         [BindProperty]
         public Nullable<int> Id { get; set; }
@@ -49,31 +50,24 @@ namespace testweb.Pages
             }
 
             Type.Parent = new Models.Type();
-          /*  if(Id == null)
-            {
-                //var parent = _context.Types.ToList().Find(it => it.Id == Type.Id).Parent;
 
-                //parent.Children.Remove(Type.);
-                Type.Parent.Children.Remove(Type);
-                _context.Attach(Type.Parent).State = EntityState.Modified;
-                Type.Parent.Id = null;
-            }
-            else
+            if (Id != null)
             {
                 Type.Parent.Id = Id;
-            }*/
 
-            if(Id == null)
-            {
-                var parent = _context.Types.ToList().Find(it => it.Children.FirstOrDefault(e => e.Id == Type.Id) != null);
-                parent.Children.Remove(parent.Children.Where(it => it.Id == Type.Id).First<Models.Type>());
-                Type.Parent = null;
-             //   _context.Attach(parent).State = EntityState.Modified;
+                Models.Type type = _context.Types.Include(e => e.Children).Include(e => e.Parent).AsNoTracking().ToList().Find(it => it.Id == Type.Id);
+                if (type.Parent == null)
+                {
+                    foreach (var item in type.Children)
+                    {
+                        _context.Database.ExecuteSqlRaw("UPDATE Types SET ParentId = NULL WHERE Id = {0}", item.Id);
+                    }
+
+                    _context.Database.ExecuteSqlRaw("UPDATE Types SET ParentId = {0} WHERE Id = {1}", Id, Type.Id);
+                    return RedirectToPage("Index");
+                }
             }
-            else
-            {
-                Type.Parent.Id = Id;
-            }
+            else Type.Parent.Id = 1;
 
             _context.Attach(Type).State = EntityState.Modified;
 
@@ -91,6 +85,17 @@ namespace testweb.Pages
                 {
                     throw;
                 }
+            }
+
+            if (Id == null)
+            {
+                /*var parent = _context.Types.ToList().Find(it => it.Children.FirstOrDefault(e => e.Id == Type.Id) != null);
+                parent.Children.Remove(parent.Children.Where(it => it.Id == Type.Id).First<Models.Type>());
+                Type.Parent = null;*/
+                //   _context.Attach(parent).State = EntityState.Modified;
+
+                _context.Database.ExecuteSqlRaw("UPDATE Types SET ParentId = NULL WHERE Id = {0}", Type.Id);
+                // return RedirectToPage("Index");
             }
 
             return RedirectToPage("Index");
