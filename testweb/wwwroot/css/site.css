@@ -103,8 +103,8 @@ td {
     min-width: calc(50px + 5%);
     padding-right: 5px;
     padding-left: 5px;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .typeRow {

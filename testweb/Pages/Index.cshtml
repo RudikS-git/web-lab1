@@ -3,7 +3,7 @@
 @{ ViewData["Title"] = "Главная"; }
 
 <div class="text-center">
-    <table className="product_table">
+    <table id="product-table" className="product-table">
         <thead>
             <tr>
                 @{
@@ -35,7 +35,7 @@
 
                         <div class="table_catalog_control">
                             <form class="table_icon_button_catalog_edit" method="post">
-                                <a class="buttonTable table_icon_catalog_btn" asp-page="EditType" asp-route-id="@item.Id">
+                                <a asp-page="EditType" asp-route-id="@item.Id">
                                     <img src="~/wrench.svg" width="12" height="12" />
                                 </a>
                             </form>
@@ -48,7 +48,7 @@
                             <!--</form>-->
 
                             <button class="table_icon_button_catalog buttonTable table_icon_catalog_btn open-button" id="open-button">
-                                    <img src="~/close.svg" width="12" height="12" />
+                                    <img value="@item.Id" src="~/close.svg" width="10" height="10" />
                             </button>
 
                             @*<form class="ticon_btn_ctlg_add" method="post">
@@ -57,8 +57,12 @@
                                 </button>
                             </form>*@
                             
-                            <a class="ticon_btn_ctlg_add" id="open-button" asp-page="CreateTypeProduct" asp-route-id=@item.Id>
+                            <a class="ticon_btn_ctlg_add" asp-page="CreateTypeProduct" asp-route-id=@item.Id>
                                 <img src="~/plus.svg" height="12" width="12" />
+                            </a>
+
+                            <a class="ticon_btn_ctlg_add_product" asp-page="Create" asp-route-id=@item.Id>
+                                <img src="~/addProduct.svg" height="18" width="18" />
                             </a>
 
                            @* <button id="btn_modal_window" class="ticon_btn_ctlg_add">

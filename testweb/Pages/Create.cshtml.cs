@@ -18,7 +18,10 @@ namespace testweb.Pages
         [BindProperty]
         public Models.Product Product { get; set; }
         public List<Models.Type> tree { get; set; }
-        
+
+        [BindProperty]
+        public int? IdParent { get; set; }
+
 
         public CreateModel(ApplicationContext db)
         {
@@ -28,6 +31,7 @@ namespace testweb.Pages
         public void OnGet(int id)
         {
             tree = _context.Types.Include(type => type.Products).AsNoTracking().ToList();
+            IdParent = id;
         }
 
         public async Task<IActionResult> OnPostAsync()

@@ -28,6 +28,7 @@ namespace testweb
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
             services.AddRazorPages();
+            services.AddMvcCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +55,9 @@ namespace testweb
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
         }
     }

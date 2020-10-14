@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 namespace testweb.Pages
 {
+    //[IgnoreAntiforgeryToken]
     public class IndexModel : PageModel
     {
         private readonly ApplicationContext _context;

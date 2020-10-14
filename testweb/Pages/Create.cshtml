@@ -13,7 +13,15 @@
         <select class="property_field" asp-for=@Model.Product.Head.Id>
             @foreach (var item in Model.tree)
             {
-                <option value="@item.Id">@item.Name</option>
+                if (item.Id == Model.IdParent)
+                {
+                    <option value=@item.Id selected>@item.Name</option> 
+                }
+                else
+                {
+                    <option value=@item.Id>@item.Name</option>
+
+                }
             }
         </select>
     </div>

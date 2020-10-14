@@ -42,16 +42,16 @@
         </div>
     </footer>
 
+    <div class="modal-overlay" id="modal-overlay"></div>
     <div class="modal" id="modal">
 
-        <p>Удалить всю ветку?</p>
+        <p class="modal-header-text">Вы уверены, что хотите удалить всю ветку?</p>
 
-        <a class="btn-add">Да</a>
+        <button id="cascadeDeleteBtn" class="modal-button btn">Да</button>
+        <button id="nonCascadeDeleteBtn" class="modal-button btn">Нет</button>
 
-        <button class="class-button" id="close-button">Закрыть</button>
-        <div class="modal-guts"></div>
     </div>
-   <div class="modal-overlay" id="modal-overlay"></div>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

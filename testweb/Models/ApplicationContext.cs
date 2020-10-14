@@ -15,6 +15,19 @@ namespace testweb.Models
             Database.EnsureCreated();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Type>()
+                .HasOne(p => p.Parent)
+                .WithMany(t => t.Children)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Head)
+                .WithMany(t => t.Products)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
         public static void SeedProduct(ApplicationContext context)
         {
             Random random = new Random();

@@ -18,30 +18,35 @@
     display: inline;
 }
 
-.table_icon_button_catalog {
-    padding: 1px 1px 2px 2px;
+.table_icon_button_catalog, .table_icon_button_catalog_edit {
+    /*  padding: 1px 1px 2px 2px;*/
     display: inline-table;
     position: absolute;
-    right: 20px;
-    top: 0;
+    right: 0px;
+    top: 4px;
     margin-left: 30px;
+    background-color: #2f2e2e;
+
+    margin-bottom: 5px;
 }
 
-.table_icon_button_catalog_edit {
-    padding: 1px 1px 2px 2px;
-    display: inline-table;
-    position: absolute;
-    right: 0;
-    top: 0;
-    /* margin-right: 20px;*/
+.table_icon_button_catalog {
+    right: 20px;
+    top: 0px;
+    width: 10px;
+    height: 10px;
 }
 
-.ticon_btn_ctlg_add {
+.ticon_btn_ctlg_add, .ticon_btn_ctlg_add_product {
     padding: 1px 1px 2px 2px;
     display: inline-table;
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+.ticon_btn_ctlg_add_product {
+    right: 20px;
 }
 
 .table_icon_catalog_btn {
@@ -76,17 +81,20 @@
     border: 0;
 }
 
-.product_table {
+.product-table {
     margin-bottom: 50px !important;
 }
 
-.btn-add {
-    /*margin-top: 350px !important;*/
+.btn, .btn-add {
     background-color: #2c3a62;
     color: white;
     padding: 5px;
     border: 0;
     border-radius: 3px;
+}
+
+.btn-add {
+    /*margin-top: 350px !important;*/
 
     float: right;
     margin: 5px;
@@ -106,13 +114,18 @@
 
 .modal {
     /*display: block;*/
+    background-color: #2b2929;
+    border: solid;
+    border-color: #575757;
+    border-radius: 5px;
+
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 400px;
+    width: 250px;
+    height: 120px;
     max-width: 100%;
     max-height: 100%;
     z-index: 1000;
@@ -140,6 +153,10 @@
 
 .modal-overlay {
     /*z-index: 1000;*/
+    background: #202020;
+    opacity: 50%;
+
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -161,16 +178,23 @@
 
 .closed { 
     display: block;
+    z-index: 500;
 }
 
 .open-button {
-    border: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
     font-size: 21px;
+}
+
+.modal-button {
+    margin-left: 20%;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+
+.modal-header-text {
+    padding: 5px;
 }
