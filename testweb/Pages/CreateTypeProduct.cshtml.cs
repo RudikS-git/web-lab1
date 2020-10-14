@@ -18,14 +18,19 @@ namespace testweb.Pages
         public Models.Type Type { get; set; }
         public List<Models.Type> tree { get; set; }
 
+        [BindProperty]
+        public int? IdParent { get; set; }
+
         public CreateTypeProductModel(ApplicationContext db)
         {
             _context = db;
         }
 
-        public void OnGet(int categories)
+        public void OnGet(int? id)
         {
             tree = _context.Types.Include(type => type.Products).AsNoTracking().ToList();
+            IdParent = id;
+
         }
 
         public async Task<IActionResult> OnPostAsync()

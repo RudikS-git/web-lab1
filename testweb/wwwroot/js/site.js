@@ -1,4 +1,20 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var modal = document.querySelector("#modal"),
+	modalOverlay = document.querySelector("#modal-overlay"),
+	closeButton = document.querySelector("#close-button"),
+	openButton = document.querySelector("#open-button");
 
-// Write your Javascript code.
+//closeButtons.forEach(it => it.classList.toggle("closed"));
+
+function handler(event) {
+	modal.classList.toggle("closed");
+	modalOverlay.classList.toggle("closed");
+	console.log(event);
+}
+
+closeButton.addEventListener("click", handler);
+
+openButton.addEventListener("click", handler);
+
+
+console.log(closeButton);
+console.log(openButton);
